@@ -2,7 +2,7 @@
   <div>
     <Card>
       <p slot="title">模板页面</p>
-      <div>
+      <div style="text-align: right">
         <div class="inline-block">
           <span class="margin-left-5 margin-right-5">
             名字:
@@ -194,6 +194,9 @@
           }
 
         },
+      },
+      mounted(){
+
       },
     }
 </script>
