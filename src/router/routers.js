@@ -59,8 +59,8 @@ export default [
     },
     children: [
       {
-        path: '/test_page',
-        name: 'test_page',
+        path: '/test-page',
+        name: 'test-page',
         meta: {
           icon: 'ios-cafe',
           title: '演示页面'
@@ -86,6 +86,34 @@ export default [
           title: '消息中心'
         },
         component: () => import('@/view/single-page/message/index.vue')
+      }
+    ]
+  },
+  {
+    path: '/others',
+    name: 'others',
+    meta: {
+      hideInMenu: true
+    },
+    component: Main,
+    children:[
+      {
+        path: '/params/:name',
+        name: 'params',
+        meta: {
+          icon: 'ios-cafe',
+          title: 'params'
+        },
+        component: () => import('@/view/test/params.vue')
+      },
+      {
+        path: '/query',
+        name: 'query',
+        meta: {
+          icon: 'ios-cafe',
+          title: 'query'
+        },
+        component: () => import('@/view/test/query.vue')
       }
     ]
   },
