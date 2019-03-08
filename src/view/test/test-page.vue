@@ -43,9 +43,11 @@
         </template>
       </Table>
 
-      <Button @click="handleSelectAll">全选</Button>
 
-      <div class="margin-top-10" style="text-align: right;">
+
+      <div class="margin-top-10">
+        <Button @click="handleSelectAll(true)">全选</Button>
+        <Button @click="handleSelectAll(false)">取消全选</Button>
         <Page
           :current="hisData.page"
           :pageSize="hisData.pageSize"
@@ -54,6 +56,7 @@
           @on-change="changePage"
           @on-page-size-change="changePageSize"
           show-total
+          style="float: right;"
         ></Page>
       </div>
     </Card>
@@ -217,7 +220,7 @@
 
         },
         selectChange(selections){
-          console.log(selections)
+          // console.log(selections)
         },
         handleSelectAll (status) {
           this.$refs.rowTable.selectAll(status);
