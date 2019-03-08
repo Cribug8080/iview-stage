@@ -323,6 +323,8 @@ export const showByAccess = (access, canViewAccess) => {
  * @param {*} route2 路由对象
  */
 export const routeEqual = (route1, route2) => {
+  // return route1.name === route2.name
+
   const params1 = route1.params || {}
   const params2 = route2.params || {}
   const query1 = route1.query || {}
