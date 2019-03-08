@@ -30,14 +30,21 @@
       </div>
       <Table :data="hisData.list"
              :columns="getColumns()"
+             @on-selection-change="selectChange"
+             ref="rowTable"
              size="small"
              border
              stripe>
         <template slot-scope="{ row, index }" slot="action">
-          <Button type="primary" size="small" style="margin-right: 5px" @click="rowShow(row)">详情</Button>
-          <Button type="error" size="small" @click="rowRemove(row)">删除</Button>
+          <Button type="primary" size="small" style="margin-right: 5px" @click="rowShow(row)">修改</Button>
+          <Button type="error" size="small" style="margin-right: 5px" @click="rowRemove(row)">删除</Button>
+          <Button type="success" size="small" style="margin-right: 5px" @click="openQuery(row)">打开Q</Button>
+          <Button type="success" size="small" style="margin-right: 5px" @click="openParams(row)">打开P</Button>
         </template>
       </Table>
+
+      <Button @click="handleSelectAll">全选</Button>
+
       <div class="margin-top-10" style="text-align: right;">
         <Page
           :current="hisData.page"
@@ -71,8 +78,6 @@
 </template>
 
 <script>
-  import {mapActions} from 'vuex'
-
     export default {
       name: "test-page",
       data(){
@@ -106,17 +111,14 @@
         }
       },
       created(){
-          // console.log(123)
+          // this.loadData()
       },
       methods:{
-        ...mapActions([
-          'getUserInfo'
-        ]),
         getColumns(){
           let myVue = this
           let res = [
             {
-              type:'index',
+              type:'selection',
               width:60,
             },
             {
@@ -145,7 +147,7 @@
               align:'center',
               fixed:'right',
               slot:'action',
-              minWidth:100,
+              minWidth:150,
             },
           ]
           return res;
@@ -176,6 +178,26 @@
           this.detailModal.data = row
           this.detailModal.modal = true
         },
+        openQuery(row){
+          this.$router.push({
+            name:'query',
+            query:{
+              name:row.name,
+            },
+          })
+        },
+        openParams(row){
+          this.$router.push({
+            name:'params',
+            params:{
+              name:row.name,
+              row:row,
+            },
+            query:{
+              queryName:'qweqwe'
+            },
+          })
+        },
         rowRemove(row){
           this.$Modal.confirm({
             title:'删除',
@@ -194,6 +216,12 @@
           }
 
         },
+        selectChange(selections){
+          console.log(selections)
+        },
+        handleSelectAll (status) {
+          this.$refs.rowTable.selectAll(status);
+        }
       },
       mounted(){
 
