@@ -75,6 +75,7 @@ export default {
   actions: {
     // 登录
     handleLogin ({ commit }, { userName, password }) {
+      console.log('handleLogin')
       userName = userName.trim()
       return new Promise((resolve, reject) => {
         login({
@@ -82,6 +83,7 @@ export default {
           password
         }).then(res => {
           const data = res.data
+          console.log(data.token)
           commit('setToken', data.token)
           resolve()
         }).catch(err => {

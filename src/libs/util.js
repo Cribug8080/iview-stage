@@ -186,6 +186,7 @@ export const canTurnTo = (name, access, routes) => {
  * @description 从URL中解析参数
  */
 export const getParams = url => {
+  if(url.split('?').length < 2) return {};
   const keyValueArr = url.split('?')[1].split('&')
   let paramObj = {}
   keyValueArr.forEach(item => {

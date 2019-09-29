@@ -17,13 +17,15 @@ const USER_MAP = {
 }
 
 export const login = req => {
+  console.log('mock login')
   req = JSON.parse(req.body)
   return { token: USER_MAP[req.userName].token }
 }
 
 export const getUserInfo = req => {
+  console.log('mock getUserInfo')
   const params = getParams(req.url)
-  return USER_MAP[params.token]
+  return USER_MAP['super_admin']
 }
 
 export const logout = req => {

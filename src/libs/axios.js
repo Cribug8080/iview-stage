@@ -50,7 +50,7 @@ class HttpRequest {
     // 响应拦截
     instance.interceptors.response.use(res => {
       this.destroy(url)
-      if(res.data.status == '-99'){
+      if(res.data && res.data.status == '-99'){
         // alert("登录过期")
         setToken('')
         router.push({
